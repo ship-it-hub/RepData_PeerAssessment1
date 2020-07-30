@@ -72,7 +72,9 @@ avg_stps$interval[which.max(avg_stps$steps)]
 sum(is.na(data))
 ```
 
-2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
+2. Devise a strategy for filling in all of the missing values in the dataset. 
+
+**the mean for that 5-minute interval strategy**
 
 ```{r}
 med_stps <- data %>% group_by(interval) %>% 
@@ -98,6 +100,8 @@ ggplot(n_tot_stps, aes(x = steps)) + geom_histogram()
 mean(n_tot_stps$steps)
 median(n_tot_stps$steps)
 ```
+These values are differ from the estimates from the first part of the assignment.
+The impact of imputing missing data on the estimates of the total daily number of steps is in the form the equality of mean and median in the new data.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -119,3 +123,5 @@ avg_stps_d <- n_data %>% group_by(interval, day) %>%
 ggplot(avg_stps_d , aes(x = interval, y = steps)) + geom_line() + 
         facet_grid(day ~ .)
 ```
+
+There is some difference.
